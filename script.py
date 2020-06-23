@@ -16,12 +16,16 @@ if test_for_master == passwords["master"]:
 else:
     print("Unsuccesful. Terminating attempt. Try again. ")
     exit(0)
-
-print("Commands: ")
-print("show - use this to see one of your passwords. ")
-print("add - use this to add another password to the list. ")
-print("exit - exit the password manager. ")
-print("help - will print out this text containing info on all commands. \n")
+    
+    
+def help():
+    print("Commands: ")
+    print("show - use this to see one of your passwords. ")
+    print("add - use this to add another password to the list. ")
+    print("exit - exit the password manager. ")
+    print("help - will print out this text containing info on all commands. \n")
+    
+help()
 
 while True:
     choice_of_command = input("Enter a command. \n>")
@@ -48,11 +52,7 @@ while True:
         break
 
     elif choice_of_command == "help":
-        print("Commands: ")
-        print("show - use this to see one of your passwords. ")
-        print("add - use this to add another password to the list. ")
-        print("exit - exit the password manager. ")
-        print("help - will print out this text containing info on all commands. \n")
+        help()
 
     else:
         print("Couldn't recognize command. Please try again")
