@@ -1,6 +1,9 @@
 import json
 import time
 import hashlib
+import caeser_cypher_encrypt.py as encrypt
+import caeser_cypher_decrypt.py as decrypt
+
 
 with open('.passwords.json') as f:
     passwords = json.load(f)
@@ -34,8 +37,8 @@ while True:
     if choice_of_command == "show":
         site_to_see = input("Which site's password would you like to see? \n>")
         if site_to_see in passwords:
-            print(f"{site_to_see}'s password: ")
-            print(f"{passwords[site_to_see]}")
+            print(f"{site_to_see.decrypt.CaeserDecrypt(site_to_see)}'s password: ")
+            print(f"{passwords[site_to_see].decrypt.CaeserDecrypt(passwords[site_to_see])}")
         else: 
             print("You don't have any site with that name. ")
             pass
@@ -43,6 +46,8 @@ while True:
     elif choice_of_command == "add":
         new_website_name = input("What is the name of the website you would like to add? \n(Recommendation: don't put the entire website name, just the main part. Ex: \"discord\" instead of \"discord.com\") \n>")
         new_website_password = input("Enter the password for the new website: ")
+        new_website_name = new_website_name.encrypt.CaeserEncrypt(new_website_name)
+        new_website_password = new_website_password.encrypt.CaeserEncrypt(new_website_password)
         new_website = {f"{new_website_name}": f"{new_website_password}"}
         passwords.update(new_website)
 
