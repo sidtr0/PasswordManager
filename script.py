@@ -1,5 +1,6 @@
 import json
 import time
+import hashlib
 
 with open('.passwords.json') as f:
     passwords = json.load(f)
@@ -11,7 +12,7 @@ print("File detected. You may now use the password manager. \n\n")
 print("Enter your master password so that I know you are authorized. ")
 test_for_master = input(">")
 
-if test_for_master == passwords["master"]:
+if hashlib.sha256(test_for_master.encode()) == passwords["master"]:
     pass
 else:
     print("Unsuccesful. Terminating attempt. Try again. ")
