@@ -57,29 +57,33 @@ while True:
         else: 
             new_website_name = input("What is the name of the website you would like to add? \n(Recommendation: don't put the entire website name, just the main part. Ex: \"discord\" instead of \"discord.com\") \n>")
             length_check = input("Do you want to specify the length? (y/n): ")
-                if length_check == "y":
-                    length = int(input("Enter the length of the password to be generated: "))
-                    else:
-                        length = int(random.randrange(4, 16))
+            if length_check == "y":
+                length = int(input("Enter the length of the password to be generated: "))
+            else:
+                length = int(random.randrange(4, 16))
 
-                        caps_check = input("Do you want capital letters in the password? (y/n): ")
-                        if caps_check == "y":
-                            caps = True
-                        else:
-                            caps = False
+            caps_check = input("Do you want capital letters in the password? (y/n): ")
+            if caps_check == "y":
+                caps = True
+            else:
+                caps = False
                                                                                     
-                        number_check = input("do you want numbers in the password? (y/n): ")
-                        if number_check == "y":
-                            numbers = True
-                        else:
-                            numbers = False
-                            symbol_check = input("do you want symbols in the password? (y/n): ")
-                            if number_check == "y":
-                                symbols = True
-                            else:
-                                symbols = False
-                                password = generate.Password(length, caps, numbers, symbols)
-                                print("Your password is: " + password)
+            number_check = input("do you want numbers in the password? (y/n): ")
+            if number_check == "y":
+                numbers = True
+            else:
+                numbers = False
+            symbol_check = input("do you want symbols in the password? (y/n): ")
+            if number_check == "y":
+                symbols = True
+            else:
+                symbols = False
+            new_website_pasword = generate.Password(length, caps, numbers, symbols)
+            print("Your password is: " + new_website_password)
+            new_website_name = new_website_name.encrypt.CaeserEncrypt(new_website_name)
+            new_website_password = new_website_password.encrypt.CaeserEncrypt(new_website_password)
+            new_website = {f"{new_website_name}": f"{new_website_password}"}
+            passwords.update(new_website)
 
         with open(".passwords.json", "w") as outfile:
             json.dump(passwords, outfile)
